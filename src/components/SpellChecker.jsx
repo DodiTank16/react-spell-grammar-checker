@@ -10,7 +10,11 @@ const SpellChecker = () => {
 
   const [rawText, setRawText] = useState("");
   const [html, setHtml] = useState("");
-  const [suggestions, setSuggestions] = useState({ word: "", list: [], position: { x: 0, y: 0 } });
+  const [suggestions, setSuggestions] = useState({
+    word: "",
+    list: [],
+    position: { x: 0, y: 0 },
+  });
 
   const getCaretOffset = () => {
     const sel = window.getSelection();
@@ -28,7 +32,12 @@ const SpellChecker = () => {
     const sel = window.getSelection();
     let charCount = 0;
 
-    const walker = document.createTreeWalker(editorRef.current, NodeFilter.SHOW_TEXT, null, false);
+    const walker = document.createTreeWalker(
+      editorRef.current,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
 
     while (walker.nextNode()) {
       const node = walker.currentNode;
@@ -78,7 +87,7 @@ const SpellChecker = () => {
         word,
         list: suggs,
         reason,
-        position: { x: rect.left + window.scrollX, y: rect.bottom + window.scrollY },
+        position: { x: rect.left, y: rect.bottom },
       });
     } else {
       setSuggestions({ word: "", list: [], position: { x: 0, y: 0 } });
@@ -102,17 +111,22 @@ const SpellChecker = () => {
         onInput={handleInput}
         onClick={handleClick}
         suppressContentEditableWarning
-        spellCheck={false}
-      ></div>
+        spellCheck={false}></div>
 
       {suggestions.list.length > 0 && (
-        <div className="suggestions-popup" style={{ top: suggestions.position.y, left: suggestions.position.x }}>
-          <p className="text-sm mb-1">{suggestions.reason || "Suggestions"}:</p>
-          {suggestions.list.map((s, i) => (
-            <button key={i} onClick={() => applySuggestion(s)}>
-              {s}
-            </button>
-          ))}
+        <div
+          className="suggestions-popup-wrapper"
+          style={{ top: suggestions.position.y, left: suggestions.position.x }}>
+          <p className="text-sm mb-1 font-medium">
+            {suggestions.reason || "Suggestions"}:
+          </p>
+          <div className="suggestions-popup">
+            {suggestions.list.map((s, i) => (
+              <button key={i} onClick={() => applySuggestion(s)}>
+                {s}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>
