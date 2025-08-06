@@ -20,7 +20,8 @@ It highlights **spelling mistakes** and **grammar issues** in real time, shows *
 
 ## 📸 Demo
 
-> _Coming Soon: GIF / Screenshot_
+> <img width="1365" height="647" alt="image" src="https://github.com/user-attachments/assets/c78b051b-5a94-433b-9cf5-51e8fcb6240b" />
+
 
 ---
 
@@ -117,5 +118,5 @@ i has never go to the paris. it are a beautifull place with many histery and art
 
 ## 📜 License
 
-MIT © [Your Name]  
+MIT © Dodi Tank  
 Hunspell dictionaries © original authors (SCOWL / Wooorm)
